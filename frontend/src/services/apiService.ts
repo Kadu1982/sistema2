@@ -15,7 +15,8 @@ apiService.interceptors.request.use(
         const token = localStorage.getItem('authToken');
 
         if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
+            if (!config.headers) config.headers = {};
+            config.headers['Authorization'] = `Bearer ${token}`;
             console.log('🔑 Token adicionado:', token.substring(0, 20) + '...');
         }
 
